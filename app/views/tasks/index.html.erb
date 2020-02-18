@@ -2,11 +2,21 @@
 
 <% @tasks.each do |task| %>
 <li>
-    <input type="checkbox" checked="false" />
+  <% if task.completed == true %>
+    <input type="checkbox" checked>
     <%= link_to task.title, task_path(task) %>
     <%= link_to "delete", destroy_path(task), method: :delete, data:{ confirm:"delete?" } %>
-    <% end %>
+
+  <% elsif task.completed == false %>
+    <input type="checkbox">
+    <%= link_to task.title, task_path(task) %>
+    <%= link_to "delete", destroy_path(task), method: :delete, data:{ confirm:"delete?" } %>
+
+  <% end %>
+<% end %>
 </li>
 <br>
 <%= link_to "Add a new task", new_path %>
+<!--
+ -->
 
